@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTACT — WXM</title>
+  <meta name="description" content="WXM 서비스 문의. 브랜드 또는 서비스를 선택해 주세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g:     #1F4037;
+      --gh:    #102A24;
+      --cream: #F4F0E8;
+      --card:  #F8F5EE;
+      --gold:  #C9A978;
+      --text:  #171815;
+      --muted: #5F5A52;
+      --dis:   #B4B2A9;
+      --bc:    rgba(201,169,120,0.25);
+      --bch:   rgba(201,169,120,0.55);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Figtree', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ════════ HEADER ════════ */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--gh); height: 60px;
+      display: flex; align-items: center;
+      border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    }
+    .header-inner {
+      width: 100%; max-width: 1400px;
+      margin: 0 auto; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 13px; font-weight: 700; letter-spacing: 0.22em; color: #F4F0E8; }
+    .header-nav { display: flex; align-items: center; gap: 36px; }
+    .nav-link {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      color: rgba(244,240,232,0.6); text-transform: uppercase; transition: color .2s;
+    }
+    .nav-link:hover { color: #F4F0E8; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .nav-pill {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: #F4F0E8;
+      border: 0.5px solid rgba(244,240,232,0.38); border-radius: 30px; padding: 6px 20px;
+      transition: border-color .2s, background .2s;
+    }
+    .nav-pill:hover { border-color: rgba(244,240,232,0.7); background: rgba(244,240,232,0.06); }
+    /* CONTACT US 활성 표시 */
+    .nav-pill.active {
+      background: var(--g);
+      border-color: var(--g);
+    }
+
+    /* ════════ PAGE HEADER ════════ */
+    .page-header {
+      background: var(--gh);
+      padding: 52px 48px 48px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    }
+    .page-header-inner {
+      max-width: 1400px; margin: 0 auto;
+    }
+    .ph-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: 16px; opacity: 0.85;
+    }
+    .ph-title {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300; line-height: 1.15;
+      color: #F4F0E8; letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .ph-sub {
+      font-size: 13px; color: rgba(244,240,232,0.5);
+      letter-spacing: 0.01em; line-height: 1.7;
+    }
+
+    /* ════════ HUB SECTION ════════ */
+    .hub-section {
+      padding: 52px 48px 64px;
+    }
+    .hub-inner { max-width: 1400px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--bc); }
+    .section-desc {
+      font-size: 14px; color: var(--muted);
+      margin-bottom: 28px; letter-spacing: 0.01em;
+    }
+
+    /* pill 리스트 */
+    .hub-list {
+      display: flex; flex-direction: column; gap: 12px;
+      max-width: 860px;
+    }
+    .hub-item {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      border: 0.5px solid rgba(31,64,55,0.18);
+      border-radius: 30px;
+      padding: 20px 28px;
+      background: transparent;
+      text-decoration: none; color: var(--text);
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .hub-item:hover {
+      border-color: rgba(31,64,55,0.4);
+      background: rgba(31,64,55,0.03);
+      transform: translateX(3px);
+    }
+    .hub-item.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .hub-item-left {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hub-item-left i {
+      font-size: 18px; color: var(--g); opacity: 0.7;
+      flex-shrink: 0;
+    }
+    .hub-item.disabled i { color: var(--dis); opacity: 1; }
+    .hub-item-name {
+      font-size: 15px; font-weight: 600;
+      letter-spacing: -0.01em; color: var(--text);
+    }
+    .hub-item.disabled .hub-item-name { color: var(--dis); }
+    .hub-item-arrow {
+      font-size: 14px; color: var(--muted);
+      transition: color .2s; flex-shrink: 0;
+    }
+    .hub-item:hover .hub-item-arrow { color: var(--g); }
+
+    /* ════════ FOOTER ════════ */
+    .site-footer { background: var(--gh); border-top: 0.5px solid rgba(255,255,255,0.06); }
+    .footer-top {
+      max-width: 1400px; margin: 0 auto;
+      padding: 44px 48px 36px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    }
+    .ft-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.22em; color: #F4F0E8; margin-bottom: 10px; }
+    .ft-sub { font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; color: rgba(244,240,232,0.35); margin-bottom: 5px; text-transform: uppercase; }
+    .ft-tagline { font-size: 11px; color: rgba(244,240,232,0.28); letter-spacing: 0.02em; }
+    .ft-company-name { font-size: 12px; font-weight: 600; color: rgba(244,240,232,0.75); margin-bottom: 10px; }
+    .ft-company-info { font-size: 11px; color: rgba(244,240,232,0.42); line-height: 1.9; }
+    .ft-langs { display: flex; gap: 20px; justify-content: flex-end; align-items: flex-start; padding-top: 4px; }
+    .ft-lang { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: rgba(244,240,232,0.35); cursor: pointer; transition: color .2s; }
+    .ft-lang.active { color: rgba(244,240,232,0.85); }
+    .ft-lang:hover  { color: rgba(244,240,232,0.7); }
+    .footer-bottom { max-width: 1400px; margin: 0 auto; padding: 16px 48px; }
+    .ft-copy { font-size: 10px; color: rgba(244,240,232,0.28); letter-spacing: 0.03em; }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ HEADER ════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">W X M</a>
+      <nav class="header-nav">
+        <a href="index.html#about" class="nav-link">ABOUT</a>
+        <a href="index.html#roadmap" class="nav-link">ROADMAP</a>
+        <a href="seminar-event.html" class="nav-link">SEMINAR &amp; EVENT</a>
+        <div class="header-right">
+          <a href="contact.html" class="nav-pill active">CONTACT US</a>
+          <a href="login.html" class="nav-pill">LOGIN</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ════════ PAGE HEADER ════════ -->
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="ph-label">CONTACT</div>
+        <div class="ph-title">문의하실 브랜드 또는<br>서비스를 선택해 주세요.</div>
+
+      </div>
+    </div>
+
+    <!-- ════════ HUB ════════ -->
+    <section class="hub-section">
+      <div class="hub-inner">
+        <div class="section-label">CONTACT</div>
+        <div class="hub-list">
+
+          <a href="qube24.html#qube24-contact" class="hub-item">
+            <span class="hub-item-left">
+              <i class="ti ti-building"></i>
+              <span class="hub-item-name">QUBE24</span>
+            </span>
+            <i class="ti ti-chevron-right hub-item-arrow"></i>
+          </a>
+
+          <a href="coming-soon.html" class="hub-item disabled">
+            <span class="hub-item-left">
+              <i class="ti ti-refresh"></i>
+              <span class="hub-item-name">RECOVERY MODE</span>
+            </span>
+            <i class="ti ti-chevron-right hub-item-arrow"></i>
+          </a>
+
+          <a href="coming-soon.html" class="hub-item disabled">
+            <span class="hub-item-left">
+              <i class="ti ti-activity"></i>
+              <span class="hub-item-name">BODY CHECK</span>
+            </span>
+            <i class="ti ti-chevron-right hub-item-arrow"></i>
+          </a>
+
+          <a href="coming-soon.html" class="hub-item disabled">
+            <span class="hub-item-left">
+              <i class="ti ti-ripple"></i>
+              <span class="hub-item-name">INNER FLOW</span>
+            </span>
+            <i class="ti ti-chevron-right hub-item-arrow"></i>
+          </a>
+
+          <a href="coming-soon.html" class="hub-item disabled">
+            <span class="hub-item-left">
+              <i class="ti ti-topology-star"></i>
+              <span class="hub-item-name">CONNECTED WELLNESS</span>
+            </span>
+            <i class="ti ti-chevron-right hub-item-arrow"></i>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <div class="ft-logo">W X M</div>
+        <div class="ft-sub">WELLNESS × MECHANISM</div>
+        <div class="ft-tagline">We Design Wellness × Mechanism</div>
+      </div>
+      <div>
+        <div class="ft-company-name">더블유엑스엠 주식회사</div>
+        <div class="ft-company-info">
+          사업자등록번호 155-81-03984 &nbsp;|&nbsp; 대표 이지민<br>
+          Contact &nbsp;010-2580-4127 &nbsp;|&nbsp; jimin@wxm.co.kr
+        </div>
+      </div>
+      <div class="ft-langs">
+        <span class="ft-lang active">KR</span>
+        <span class="ft-lang">EN</span>
+        <span class="ft-lang">JP</span>
+        <span class="ft-lang">CN</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="ft-copy">© WXM Inc. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>

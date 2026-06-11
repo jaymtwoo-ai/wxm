@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QUBE24 — WXM</title>
+  <meta name="description" content="QUBE24 B2B System — 공간 맞춤 무인 큐브 운영 시스템" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gh: #102A24;
+      --g: #1F4037;
+      --cream: #F4F0E8;
+      --cream-2: #F8F5EE;
+      --gold: #C9A978;
+      --line: rgba(244,240,232,0.08);
+      --soft: rgba(244,240,232,0.58);
+      --faint: rgba(244,240,232,0.34);
+      --text: #23312d;
+      --muted: #62706b;
+      --road-line: rgba(201,169,120,0.52);
+      --road-divider: rgba(201,169,120,0.22);
+      --gold-soft: #D4B98D;
+      --gold-line: rgba(201,169,120,0.38);
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: 'Figtree', 'Pretendard', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    body { overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* =============================
+       HEADER — coming-soon identical
+    ============================= */
+    .site-header {
+      height: 60px;
+      background: rgba(16,42,36,0.96);
+      border-bottom: 0.5px solid var(--line);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+      color: var(--cream);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      color: rgba(244,240,232,0.56);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-pill {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      border: 0.5px solid rgba(244,240,232,0.38);
+      border-radius: 30px;
+      padding: 6px 20px;
+      white-space: nowrap;
+    }
+
+    main {
+      display: block;
+      background: var(--cream);
+    }
+
+    /* =============================
+       HERO — index style adapted
+    ============================= */
+    .hero {
+      position: relative;
+      background:
+        linear-gradient(115deg, rgba(16,42,36,0.99) 0%, rgba(16,42,36,0.96) 48%, rgba(31,64,55,0.92) 100%),
+        radial-gradient(ellipse 70% 85% at 8% 100%, rgba(201,169,120,0.12) 0%, transparent 58%),
+        radial-gradient(ellipse 40% 50% at 94% 8%, rgba(244,240,232,0.07) 0%, transparent 50%);
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      align-items: stretch;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(7,24,19,0.02) 0%, rgba(7,24,19,0.00) 38%, rgba(5,18,15,0.10) 100%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(ellipse 90% 96% at 50% 50%, transparent 0%, rgba(6,20,16,0.02) 72%, rgba(5,18,15,0.06) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: 96px 72px 96px;
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 120px;
+      align-items: center;
+    }
+
+    .hero-left { padding-left: 70px; }
+
+    .hero-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0.92;
+    }
+
+    .hero-title {
+      font-family: 'Figtree', 'Pretendard', system-ui, sans-serif;
+      font-size: clamp(64px, 5.65vw, 96px);
+      font-weight: 300;
+      line-height: 1.01;
+      color: #F2EEE6;
+      letter-spacing: -0.052em;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.08), 0 18px 52px rgba(0,0,0,0.16);
+    }
+
+    .hero-line { display: block; }
+    .hero-line-1 { font-size: 0.56em; margin-bottom: 0.04em; }
+    .hero-line-2 { font-size: 1em; }
+    .hero-line-3 {
+      font-size: 0.90em;
+      font-style: italic;
+      margin-left: 0.34em;
+      margin-top: 0.04em;
+    }
+    .hero-title .x {
+      font-weight: 300;
+      letter-spacing: -0.07em;
+      display: inline-block;
+      margin: 0 0.08em;
+    }
+
+    .hero-right {
+      position: relative;
+      padding-left: 44px;
+      align-self: center;
+      max-width: 520px;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(201,169,120,0.95), rgba(201,169,120,0.42));
+    }
+
+    .hero-body {
+      font-family: 'Pretendard', 'Figtree', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.82;
+      color: rgba(244,240,232,0.76);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: rgba(244,240,232,0.86);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-body p { margin-bottom: 15px; word-break: keep-all; }
+    .hero-body p:last-child { margin-bottom: 0; }
+    .hero-body .em {
+      color: rgba(244,240,232,0.96);
+      font-weight: 500;
+    }
+
+    /* =============================
+       B2B SYSTEM / ROADMAP
+    ============================= */
+    .roadmap-section {
+      background: #F2EEE6;
+      padding: 56px 48px 60px;
+      border-top: 1px solid rgba(31,64,55,0.03);
+    }
+
+    .roadmap-inner {
+      max-width: 1720px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,169,120,0.55), rgba(201,169,120,0.12));
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .roadmap-card {
+      position: relative;
+      padding: 0 52px 34px 52px;
+      min-height: 295px;
+    }
+
+    .roadmap-card + .roadmap-card {
+      border-left: 1px solid var(--road-divider);
+    }
+
+    .road-head {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      min-height: 74px;
+    }
+
+    .road-number {
+      font-size: clamp(62px, 4.8vw, 76px);
+      line-height: 1;
+      font-weight: 300;
+      letter-spacing: -0.06em;
+      color: var(--gold-soft);
+      flex: 0 0 auto;
+    }
+
+    .road-dot {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(201,169,120,0.14);
+      flex: 0 0 auto;
+    }
+
+    .road-dot::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: rgba(201,169,120,0.16);
+    }
+
+    .road-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,169,120,0.92), rgba(201,169,120,0.28));
+    }
+
+    .road-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: var(--g);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .road-korean {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.8;
+      color: rgba(31,64,55,0.58);
+      margin-bottom: 6px;
+      word-break: keep-all;
+    }
+
+    .road-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(77,90,86,0.88);
+      word-break: keep-all;
+      max-width: 280px;
+    }
+
+    /* =============================
+       CONTACT
+    ============================= */
+    .contact-section {
+      background: var(--cream);
+      border-top: 0.5px solid rgba(31,64,55,0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 90% at -5% 50%, rgba(31,64,55,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 70% at 105% 50%, rgba(201,169,120,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact-section-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 64px 48px 68px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .cs-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cs-title {
+      font-family: 'Pretendard', 'Figtree', system-ui, sans-serif;
+      font-size: clamp(28px, 2.45vw, 42px);
+      font-weight: 400;
+      line-height: 1.24;
+      color: var(--g);
+      letter-spacing: -0.055em;
+      word-break: keep-all;
+    }
+
+    .cs-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cs-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 0.5px solid rgba(201,169,120,0.75);
+      border-radius: 40px;
+      padding: 18px 28px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--g);
+      background: rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      width: 100%;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .cs-btn:hover {
+      background: rgba(255,255,255,0.34);
+      transform: translateX(2px);
+    }
+
+    .cs-btn-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cs-btn-left i,
+    .cs-btn-right {
+      font-size: 18px;
+      color: var(--g);
+    }
+
+    /* =============================
+       FOOTER — coming-soon identical
+    ============================= */
+    .site-footer {
+      margin: 0;
+      padding: 0;
+      background: var(--gh);
+      border-top: 0.5px solid var(--line);
+    }
+
+    .footer-top {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 26px 48px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      border-bottom: 0.5px solid var(--line);
+    }
+
+    .ft-logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .ft-sub {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: rgba(244,240,232,0.35);
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .ft-tagline {
+      font-size: 11px;
+      color: rgba(244,240,232,0.28);
+      letter-spacing: 0.02em;
+    }
+
+    .ft-company-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(244,240,232,0.75);
+      margin-bottom: 6px;
+    }
+
+    .ft-company-info {
+      font-size: 11px;
+      color: rgba(244,240,232,0.42);
+      line-height: 1.9;
+    }
+
+    .ft-langs {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-top: 4px;
+    }
+
+    .ft-lang {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(244,240,232,0.35);
+    }
+
+    .ft-lang.active { color: rgba(244,240,232,0.85); }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 10px 48px 12px;
+    }
+
+    .ft-copy {
+      font-size: 10px;
+      color: rgba(244,240,232,0.28);
+      letter-spacing: 0.03em;
+    }
+
+    /* =============================
+       Responsive
+    ============================= */
+    @media (max-width: 1280px) {
+      .hero-inner {
+        padding: 84px 48px 88px;
+        gap: 72px;
+      }
+      .hero-left { padding-left: 26px; }
+      .roadmap-card { padding: 0 30px 30px 30px; }
+    }
+
+    @media (max-width: 980px) {
+      .header-inner { padding: 0 30px; }
+      .header-nav { gap: 24px; }
+      .nav-pill { display: none; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding: 76px 32px 64px;
+      }
+      .hero-left { padding-left: 0; }
+      .hero-title { font-size: clamp(52px, 10vw, 78px); }
+      .hero-right { padding-left: 22px; max-width: 640px; }
+
+      .roadmap-section { padding: 50px 32px 56px; }
+      .roadmap-grid { grid-template-columns: 1fr 1fr; }
+      .roadmap-card:nth-child(3),
+      .roadmap-card:nth-child(4) {
+        margin-top: 18px;
+        padding-top: 18px;
+      }
+      .roadmap-card:nth-child(3),
+      .roadmap-card:nth-child(4) {
+        border-top: 1px solid var(--road-divider);
+      }
+      .roadmap-card:nth-child(3) { border-left: none; }
+
+      .contact-section-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding: 54px 32px 58px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1.1fr 1.4fr auto;
+        gap: 22px;
+        padding: 24px 34px 20px;
+      }
+      .footer-bottom { padding: 10px 34px 14px; }
+    }
+
+    @media (max-width: 520px) {
+      .site-header {
+        height: 48px !important;
+        position: sticky;
+        top: 0;
+      }
+
+      .header-inner {
+        padding: 0 22px !important;
+        gap: 18px !important;
+      }
+
+      .brand {
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.22em !important;
+        color: #F4F0E8 !important;
+        white-space: nowrap !important;
+      }
+
+      .header-nav {
+        gap: 22px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .nav-link {
+        font-size: 6px !important;
+        letter-spacing: 0.16em !important;
+        white-space: nowrap !important;
+      }
+
+      .nav-pill { display: none !important; }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        display: block;
+        padding: 56px 24px 46px;
+      }
+
+      .hero-label {
+        font-size: 7px;
+        letter-spacing: 0.28em;
+        margin-bottom: 12px;
+      }
+
+      .hero-title {
+        font-size: 44px;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        margin-bottom: 34px;
+      }
+
+      .hero-line-1 { font-size: 0.58em; }
+      .hero-line-3 { margin-left: 0.16em; }
+
+      .hero-right {
+        padding-left: 14px;
+        max-width: 100%;
+      }
+
+      .hero-kicker {
+        font-size: 8px;
+        margin-bottom: 10px;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-body {
+        font-size: 10.5px;
+        line-height: 1.7;
+      }
+
+      .hero-body p:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      .roadmap-section {
+        padding: 42px 24px 44px;
+      }
+
+      .section-label {
+        font-size: 7px;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap-card {
+        min-height: auto;
+        padding: 0 0 28px 0;
+      }
+
+      .roadmap-card + .roadmap-card {
+        border-left: none;
+        border-top: 1px solid var(--road-divider);
+        padding-top: 20px;
+      }
+
+      .roadmap-card:nth-child(3),
+      .roadmap-card:nth-child(4) {
+        margin-top: 0;
+      }
+
+      .road-head {
+        min-height: auto;
+        margin-bottom: 16px;
+      }
+
+      .road-number {
+        font-size: 48px;
+      }
+
+      .road-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .road-korean,
+      .road-desc {
+        font-size: 11px;
+        line-height: 1.65;
+      }
+
+      .contact-section-inner {
+        padding: 44px 24px 46px;
+      }
+
+      .cs-label {
+        font-size: 7px;
+        margin-bottom: 10px;
+      }
+
+      .cs-title {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.055em;
+        margin-bottom: 0;
+      }
+
+      .cs-buttons { gap: 10px; }
+
+      .cs-btn {
+        padding: 14px 18px;
+        font-size: 9px;
+        letter-spacing: 0.10em;
+      }
+
+      .cs-btn-left { gap: 10px; }
+      .cs-btn-left i,
+      .cs-btn-right { font-size: 14px; }
+
+      .site-footer {
+        margin-top: 0 !important;
+        background: var(--gh) !important;
+        border-top: 0.5px solid rgba(244,240,232,0.08) !important;
+      }
+
+      .footer-top {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+        padding: 10px 24px 8px !important;
+        border-bottom: 0.5px solid rgba(244,240,232,0.08) !important;
+      }
+
+      .footer-top > div:first-child,
+      .footer-top > div:nth-child(2),
+      .footer-top > div:nth-child(3) {
+        display: block !important;
+      }
+
+      .ft-logo {
+        font-size: 8px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.20em !important;
+        color: #F4F0E8 !important;
+        margin-bottom: 5px !important;
+      }
+
+      .ft-sub {
+        font-size: 6px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.10em !important;
+        line-height: 1.3 !important;
+        color: rgba(244,240,232,0.35) !important;
+        margin-bottom: 3px !important;
+      }
+
+      .ft-tagline {
+        font-size: 7px !important;
+        line-height: 1.35 !important;
+        color: rgba(244,240,232,0.28) !important;
+        letter-spacing: 0.02em !important;
+      }
+
+      .ft-company-name {
+        font-size: 8px !important;
+        font-weight: 700 !important;
+        color: rgba(244,240,232,0.75) !important;
+        margin-bottom: 5px !important;
+      }
+
+      .ft-company-info {
+        font-size: 7px !important;
+        line-height: 1.55 !important;
+        color: rgba(244,240,232,0.42) !important;
+        word-break: keep-all !important;
+      }
+
+      .ft-langs {
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding-top: 2px !important;
+      }
+
+      .ft-lang {
+        font-size: 8px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.07em !important;
+        color: rgba(244,240,232,0.35) !important;
+      }
+
+      .ft-lang.active { color: rgba(244,240,232,0.85) !important; }
+
+      .footer-bottom {
+        padding: 7px 24px 9px !important;
+      }
+
+      .ft-copy {
+        display: block !important;
+        font-size: 7px !important;
+        line-height: 1.3 !important;
+        color: rgba(244,240,232,0.28) !important;
+        letter-spacing: 0.03em !important;
+        white-space: normal !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .header-inner { padding: 0 18px !important; }
+      .brand { font-size: 9px !important; letter-spacing: 0.14em !important; }
+      .header-nav { gap: 14px !important; }
+      .nav-link { font-size: 5.6px !important; letter-spacing: 0.12em !important; }
+
+      .hero-inner { padding: 48px 20px 38px; }
+      .hero-title { font-size: 40px; margin-bottom: 28px; }
+
+      .roadmap-section { padding: 38px 18px 40px; }
+
+      .contact-section-inner { padding: 40px 18px 42px; }
+
+      .footer-top { padding: 9px 18px 7px !important; }
+      .footer-bottom { padding: 6px 18px 8px !important; }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">W X M</a>
+      <nav class="header-nav">
+        <a href="index.html#about" class="nav-link">ABOUT</a>
+        <a href="index.html#roadmap" class="nav-link">ROADMAP</a>
+        <a href="seminar-event.html" class="nav-link">SEMINAR &amp; EVENT</a>
+        <div class="header-right">
+          <a href="contact.html" class="nav-pill">CONTACT US</a>
+          <a href="login.html" class="nav-pill">LOGIN</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-label">QUBE24</div>
+          <h1 class="hero-title" aria-label="Better Moment Better You">
+            <span class="hero-line hero-line-1">Better</span>
+            <span class="hero-line hero-line-2">Moment</span>
+            <span class="hero-line hero-line-3">Better You</span>
+          </h1>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-body">
+            <div class="hero-kicker">QUBE24 B2B SYSTEM</div>
+            <p class="em">머무는 공간에 취향의 감각을 채우다.</p>
+            <p>프리미엄 디자인과 공간 맞춤 큐레이션으로, 일상 속에서 다시 찾고 싶은 24시간 무인 큐브를 제안합니다.</p>
+            <p>공간의 흐름과 이용자의 취향을 읽고, 운영 방식까지 연결하는 B2B 시스템으로 QUBE24를 설계합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap-section" id="b2b-system">
+      <div class="roadmap-inner">
+        <div class="section-label">QUBE24 B2B SYSTEM</div>
+
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div class="road-head">
+              <div class="road-number">01</div>
+              <div class="road-dot"></div>
+              <div class="road-line"></div>
+            </div>
+            <div class="road-title">맞춤 기준</div>
+            <div class="road-korean">공간별 이용자 취향에 맞춰</div>
+            <div class="road-desc">상품 구성과 큐레이션 방향을 커스터마이징하는 QUBE24 맞춤 설계 단계입니다.</div>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="road-head">
+              <div class="road-number">02</div>
+              <div class="road-dot"></div>
+              <div class="road-line"></div>
+            </div>
+            <div class="road-title">구성 방식</div>
+            <div class="road-korean">냉장 · 상온 · 냉동 구성을 바탕으로</div>
+            <div class="road-desc">공간 목적에 맞는 상품군과 보충 주기, 운영 구성을 조정합니다.</div>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="road-head">
+              <div class="road-number">03</div>
+              <div class="road-dot"></div>
+              <div class="road-line"></div>
+            </div>
+            <div class="road-title">적용 장소</div>
+            <div class="road-korean">학교 · 병원 · 기업 · 커뮤니티 등</div>
+            <div class="road-desc">다양한 공간 특성과 이용 흐름에 맞춰 QUBE24를 유연하게 적용합니다.</div>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="road-head">
+              <div class="road-number">04</div>
+              <div class="road-dot"></div>
+              <div class="road-line"></div>
+            </div>
+            <div class="road-title">운영 방식</div>
+            <div class="road-korean">WXM 운영형 · 파트너 관리형</div>
+            <div class="road-desc">도입 목적에 따라 적합한 운영 구조를 선택해 효율적으로 적용합니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="qube24-contact">
+      <div class="contact-section-inner">
+        <div>
+          <div class="cs-label">Contact</div>
+          <div class="cs-title">QUBE24와 함께<br>새로운 가능성을<br>시작하세요.</div>
+        </div>
+
+        <div class="cs-buttons">
+          <a href="contact.html" class="cs-btn">
+            <span class="cs-btn-left">
+              <i class="ti ti-send"></i>
+              CONTACT US
+            </span>
+            <i class="ti ti-chevron-right cs-btn-right"></i>
+          </a>
+          <a href="qa.html" class="cs-btn">
+            <span class="cs-btn-left">
+              <i class="ti ti-help-circle"></i>
+              Q&amp;A
+            </span>
+            <i class="ti ti-chevron-right cs-btn-right"></i>
+          </a>
+          <a href="#top" class="cs-btn" id="back-to-top">
+            <span class="cs-btn-left">
+              <i class="ti ti-arrow-up"></i>
+              BACK TO TOP
+            </span>
+            <i class="ti ti-chevron-right cs-btn-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <div class="ft-logo">W X M</div>
+        <div class="ft-sub">WELLNESS × MECHANISM</div>
+        <div class="ft-tagline">We Design Wellness x Mechanism</div>
+      </div>
+      <div>
+        <div class="ft-company-name">더블유엑스엠 주식회사</div>
+        <div class="ft-company-info">
+          사업자등록번호 155-81-03984 &nbsp;|&nbsp; 대표 이지민<br>
+          Contact &nbsp;010-2580-4127 &nbsp;|&nbsp; jimin@wxm.co.kr
+        </div>
+      </div>
+      <div class="ft-langs">
+        <span class="ft-lang active">KR</span>
+        <span class="ft-lang">EN</span>
+        <span class="ft-lang">JP</span>
+        <span class="ft-lang">CN</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="ft-copy">© WXM Inc. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('back-to-top').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
