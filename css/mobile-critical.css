@@ -1,0 +1,36 @@
+/* Loaded last — guarantees mobile layout on phones even if inline CSS breaks */
+
+@media (max-width: 980px), (hover: none) and (pointer: coarse) {
+  .header-right,
+  .nav-pill {
+    display: none !important;
+  }
+
+  .logo,
+  .brand {
+    white-space: nowrap !important;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cb-buttons {
+    display: flex !important;
+  }
+
+  a.cb-btn,
+  .cb-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .cb-btn-left {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+}
