@@ -161,11 +161,12 @@
       font-weight: 300;
       line-height: 0.94;
       letter-spacing: -0.07em;
-      color: var(--cream);
+      color: #F4F0E8;
     }
 
     .cs-title span { display: block; }
-    .cs-title .title-sub { color: rgba(244,240,232,0.78); }
+    .cs-title > span:not(.title-sub) { color: #F4F0E8; }
+    .cs-title .title-sub { color: rgba(244,240,232,0.92); }
 
     .cs-right {
       position: relative;
@@ -366,6 +367,15 @@
         line-height: 0.98;
         letter-spacing: -0.06em;
         margin-bottom: 38px;
+        color: #F4F0E8 !important;
+      }
+
+      .cs-title > span:not(.title-sub) {
+        color: #F4F0E8 !important;
+      }
+
+      .cs-title .title-sub {
+        color: rgba(244,240,232,0.92) !important;
       }
 
       .cs-right {

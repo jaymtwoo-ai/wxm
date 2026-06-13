@@ -302,8 +302,8 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 16px;
 }
 
-.cb-title,
-.cs-title,
+.contact-band .cb-title,
+.contact-section .cs-title,
 .iq-title {
   font-family: var(--font-body);
   font-size: clamp(28px, 2.45vw, 42px);
@@ -698,6 +698,15 @@ a.ft-lang:hover { color: rgba(244, 240, 232, 0.7); }
 
 .page-type-c .cs-title {
   font-size: clamp(44px, 6.5vw, 92px);
+  color: #F4F0E8;
+}
+
+.page-type-c .cs-hero .cs-title > span:not(.title-sub) {
+  color: #F4F0E8;
+}
+
+.page-type-c .cs-hero .cs-title .title-sub {
+  color: rgba(244, 240, 232, 0.92);
 }
 
 .page-type-c .cs-copy {
