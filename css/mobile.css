@@ -316,10 +316,29 @@
     color: #C9A978 !important;
   }
 
-  .cs-title {
+  .contact-section .cs-title {
     font-size: 24px !important;
     line-height: 1.2 !important;
     color: #1F4037 !important;
+  }
+
+  /* coming-soon hero — dark bg, cream title (not contact-band green) */
+  .page-type-c .cs-hero .cs-title,
+  .cs-hero .cs-title {
+    color: #F4F0E8 !important;
+    font-size: clamp(36px, 10vw, 44px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.06em !important;
+  }
+
+  .page-type-c .cs-hero .cs-title > span:not(.title-sub),
+  .cs-hero .cs-title > span:not(.title-sub) {
+    color: #F4F0E8 !important;
+  }
+
+  .page-type-c .cs-hero .cs-title .title-sub,
+  .cs-hero .cs-title .title-sub {
+    color: rgba(244, 240, 232, 0.92) !important;
   }
 
   /* ── QA / Contact page sections ── */

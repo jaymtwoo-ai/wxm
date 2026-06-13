@@ -759,6 +759,15 @@ a.ft-lang:hover { color: rgba(244, 240, 232, 0.7); }
   .page-type-c .cs-title {
     font-size: clamp(36px, 10vw, 44px);
     margin-bottom: clamp(20px, 3vh, 32px);
+    color: #F4F0E8 !important;
+  }
+
+  .page-type-c .cs-hero .cs-title > span:not(.title-sub) {
+    color: #F4F0E8 !important;
+  }
+
+  .page-type-c .cs-hero .cs-title .title-sub {
+    color: rgba(244, 240, 232, 0.92) !important;
   }
 
   .page-type-c .cs-copy {
