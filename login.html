@@ -10,92 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/common.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --g: #1F4037;
-      --gh: #102A24;
-      --cream: #F4F0E8;
-      --gold: #C9A978;
-      --text: #171815;
-      --muted: #5F5A52;
-      --bc: rgba(201,169,120,0.25);
-      --line: rgba(244,240,232,0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Figtree', 'Pretendard', system-ui, sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { text-decoration: none; color: inherit; }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--gh);
-      height: 60px;
-      display: flex;
-      align-items: center;
-      border-bottom: 0.5px solid rgba(255,255,255,0.06);
-    }
-    .header-inner {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo { font-size: 13px; font-weight: 700; letter-spacing: 0.22em; color: #F4F0E8; }
-    .header-nav { display: flex; align-items: center; gap: 36px; }
-    .nav-link {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      color: rgba(244,240,232,0.6);
-      text-transform: uppercase;
-    }
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .nav-pill {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: #F4F0E8;
-      border: 0.5px solid rgba(244,240,232,0.38);
-      border-radius: 30px;
-      padding: 6px 20px;
-    }
-    .nav-pill.active { background: var(--g); border-color: var(--g); }
-
-    .page-header {
-      background: var(--gh);
-      padding: 52px 48px 48px;
-      border-bottom: 0.5px solid rgba(255,255,255,0.06);
-    }
-    .page-header-inner { max-width: 1400px; margin: 0 auto; }
-    .ph-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .ph-title {
-      font-family: 'Pretendard', 'Figtree', system-ui, sans-serif;
-      font-size: clamp(28px, 3vw, 42px);
-      font-weight: 300;
-      line-height: 1.15;
-      color: #F4F0E8;
-      letter-spacing: -0.025em;
-    }
-
+    /* login.html — [C] 단순형 (한 화면) */
     .login-section { padding: 52px 48px 64px; }
     .login-inner { max-width: 480px; margin: 0 auto; }
 
@@ -164,7 +81,7 @@
       word-break: keep-all;
     }
 
-    .site-footer { background: var(--gh); border-top: 0.5px solid var(--line); }
+    .site-footer { border-top-color: var(--line-on-dark); }
     .footer-top {
       max-width: 1400px;
       margin: 0 auto;
@@ -172,7 +89,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
-      border-bottom: 0.5px solid var(--line);
+      border-bottom: 0.5px solid var(--line-on-dark);
     }
     .ft-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.22em; color: #F4F0E8; margin-bottom: 6px; }
     .ft-sub { font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; color: rgba(244,240,232,0.35); margin-bottom: 3px; text-transform: uppercase; }
@@ -189,22 +106,17 @@
       .header-inner { padding: 0 22px; }
       .header-nav { gap: 22px; }
       .nav-pill { display: none; }
-      .page-header { padding: 40px 24px 36px; }
-      .login-section { padding: 36px 24px 48px; }
-      .login-card { padding: 32px 24px; }
-      .footer-top { grid-template-columns: 1fr; padding: 10px 24px 8px; gap: 6px; }
-      .footer-bottom { padding: 7px 24px 9px; }
     }
   </style>
 </head>
-<body>
+<body class="page-type-c">
 
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">W X M</a>
       <nav class="header-nav">
         <a href="index.html#about" class="nav-link">ABOUT</a>
-        <a href="index.html#roadmap" class="nav-link">ROADMAP</a>
+        <a href="index.html#roadmap" class="nav-link">BRANDS</a>
         <a href="seminar-event.html" class="nav-link">SEMINAR &amp; EVENT</a>
         <div class="header-right">
           <a href="contact.html" class="nav-pill">CONTACT US</a>
@@ -259,9 +171,9 @@
       </div>
       <div class="ft-langs">
         <span class="ft-lang active">KR</span>
-        <span class="ft-lang">EN</span>
-        <span class="ft-lang">JP</span>
-        <span class="ft-lang">CN</span>
+        <a href="coming-soon.html" class="ft-lang">EN</a>
+        <a href="coming-soon.html" class="ft-lang">JP</a>
+        <a href="coming-soon.html" class="ft-lang">CN</a>
       </div>
     </div>
     <div class="footer-bottom">

@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/common.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -239,33 +240,33 @@
        B2B SYSTEM / ROADMAP
     ============================= */
     .roadmap-section {
-      background: #F2EEE6;
-      padding: 56px 48px 60px;
+      background: #F4F0E8;
+      padding: 58px 48px 74px;
       border-top: 1px solid rgba(31,64,55,0.03);
     }
 
     .roadmap-inner {
-      max-width: 1720px;
+      max-width: 1500px;
       margin: 0 auto;
     }
 
     .section-label {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.29em;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 48px;
+      margin-bottom: 38px;
     }
 
     .section-label::after {
       content: '';
       flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(201,169,120,0.55), rgba(201,169,120,0.12));
+      height: 0.5px;
+      background: rgba(201,169,120,0.24);
     }
 
     .roadmap-grid {
@@ -276,173 +277,77 @@
 
     .roadmap-card {
       position: relative;
-      padding: 0 52px 34px 52px;
-      min-height: 295px;
+      padding: 0 34px 4px;
+      min-height: 205px;
     }
 
     .roadmap-card + .roadmap-card {
-      border-left: 1px solid var(--road-divider);
+      border-left: 1px solid rgba(31,64,55,0.12);
     }
 
     .road-head {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-      min-height: 74px;
+      gap: 10px;
+      margin-bottom: 18px;
+      min-height: 48px;
     }
 
     .road-number {
-      font-size: clamp(62px, 4.8vw, 76px);
-      line-height: 1;
-      font-weight: 300;
-      letter-spacing: -0.06em;
-      color: var(--gold-soft);
+      font-size: clamp(38px, 3.3vw, 54px);
+      line-height: 0.9;
+      font-weight: 400;
+      letter-spacing: -0.058em;
+      color: rgba(201,169,120,0.78);
       flex: 0 0 auto;
     }
 
     .road-dot {
       position: relative;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 4px rgba(201,169,120,0.14);
+      background: rgba(31,64,55,0.18);
       flex: 0 0 auto;
     }
 
-    .road-dot::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: rgba(201,169,120,0.16);
-    }
+    .road-dot::before { display: none; }
 
     .road-line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, rgba(201,169,120,0.92), rgba(201,169,120,0.28));
+      background: rgba(31,64,55,0.16);
     }
 
     .road-title {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 700;
-      line-height: 1.35;
+      line-height: 1.25;
       letter-spacing: -0.02em;
-      color: var(--g);
-      margin-bottom: 12px;
-      text-transform: uppercase;
+      color: rgba(23,24,21,0.62);
+      margin-bottom: 10px;
+      text-transform: none;
     }
 
     .road-korean {
-      font-size: 13px;
+      font-size: 10px;
       font-weight: 500;
-      line-height: 1.8;
-      color: rgba(31,64,55,0.58);
+      line-height: 1.72;
+      color: rgba(95,90,82,0.62);
       margin-bottom: 6px;
       word-break: keep-all;
     }
 
     .road-desc {
-      font-size: 13px;
-      line-height: 1.8;
-      color: rgba(77,90,86,0.88);
-      word-break: keep-all;
-      max-width: 280px;
-    }
-
-    /* =============================
-       CONTACT
-    ============================= */
-    .contact-section {
-      background: var(--cream);
-      border-top: 0.5px solid rgba(31,64,55,0.08);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 90% at -5% 50%, rgba(31,64,55,0.06) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 70% at 105% 50%, rgba(201,169,120,0.04) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .contact-section-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 64px 48px 68px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .cs-label {
       font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .cs-title {
-      font-family: 'Pretendard', 'Figtree', system-ui, sans-serif;
-      font-size: clamp(28px, 2.45vw, 42px);
-      font-weight: 400;
-      line-height: 1.24;
-      color: var(--g);
-      letter-spacing: -0.055em;
+      line-height: 1.72;
+      color: rgba(95,90,82,0.62);
       word-break: keep-all;
+      max-width: none;
     }
 
-    .cs-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .cs-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 0.5px solid rgba(201,169,120,0.75);
-      border-radius: 40px;
-      padding: 18px 28px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--g);
-      background: rgba(255,255,255,0.18);
-      text-transform: uppercase;
-      width: 100%;
-      transition: background .2s ease, transform .2s ease;
-    }
-
-    .cs-btn:hover {
-      background: rgba(255,255,255,0.34);
-      transform: translateX(2px);
-    }
-
-    .cs-btn-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .cs-btn-left i,
-    .cs-btn-right {
-      font-size: 18px;
-      color: var(--g);
-    }
+    /* CONTACT — common.css 셸 사용 (index CONTACT BAND 동일) */
 
     /* =============================
        FOOTER — coming-soon identical
@@ -538,7 +443,7 @@
         gap: 72px;
       }
       .hero-left { padding-left: 26px; }
-      .roadmap-card { padding: 0 30px 30px 30px; }
+      .roadmap-card { padding: 0 28px 4px; }
     }
 
     @media (max-width: 980px) {
@@ -570,8 +475,14 @@
 
       .contact-section-inner {
         grid-template-columns: 1fr;
-        gap: 34px;
-        padding: 54px 32px 58px;
+        gap: 24px;
+        padding: 48px 34px;
+      }
+
+      .cs-buttons {
+        grid-column: auto;
+        justify-self: stretch;
+        width: 100%;
       }
 
       .footer-top {
@@ -711,33 +622,56 @@
       }
 
       .contact-section-inner {
-        padding: 44px 24px 46px;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        padding: 24px 24px 28px !important;
+        gap: 18px !important;
+      }
+
+      .cs-buttons {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        width: 100% !important;
+        gap: 8px !important;
       }
 
       .cs-label {
-        font-size: 7px;
-        margin-bottom: 10px;
+        font-size: 8px !important;
+        letter-spacing: .24em !important;
+        margin-bottom: 10px !important;
       }
 
       .cs-title {
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 1.2;
-        letter-spacing: -0.055em;
-        margin-bottom: 0;
+        font-size: 26px !important;
+        line-height: 1.22 !important;
+        margin-bottom: 0 !important;
       }
-
-      .cs-buttons { gap: 10px; }
 
       .cs-btn {
-        padding: 14px 18px;
-        font-size: 9px;
-        letter-spacing: 0.10em;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        min-height: 44px !important;
+        padding: 14px 18px !important;
+        font-size: 9px !important;
+        letter-spacing: .08em !important;
+        box-sizing: border-box !important;
       }
 
-      .cs-btn-left { gap: 10px; }
+      .cs-btn-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+      }
+
       .cs-btn-left i,
-      .cs-btn-right { font-size: 14px; }
+      .cs-btn-right {
+        font-size: 14px !important;
+        flex-shrink: 0 !important;
+      }
 
       .site-footer {
         margin-top: 0 !important;
@@ -853,7 +787,7 @@
       <a href="index.html" class="brand">W X M</a>
       <nav class="header-nav">
         <a href="index.html#about" class="nav-link">ABOUT</a>
-        <a href="index.html#roadmap" class="nav-link">ROADMAP</a>
+        <a href="index.html#roadmap" class="nav-link">BRANDS</a>
         <a href="seminar-event.html" class="nav-link">SEMINAR &amp; EVENT</a>
         <div class="header-right">
           <a href="contact.html" class="nav-pill">CONTACT US</a>
@@ -938,32 +872,39 @@
       </div>
     </section>
 
-    <section class="contact-section" id="qube24-contact">
+    <section class="contact-section contact-band" id="qube24-contact">
       <div class="contact-section-inner">
         <div>
-          <div class="cs-label">Contact</div>
-          <div class="cs-title">QUBE24와 함께<br>새로운 가능성을<br>시작하세요.</div>
+          <div class="cs-label">QUBE24 CONTACT</div>
+          <div class="cs-title">문의 유형을<br>선택해 주세요.</div>
         </div>
 
         <div class="cs-buttons">
-          <a href="contact.html" class="cs-btn">
+          <a href="coming-soon.html" class="cs-btn">
             <span class="cs-btn-left">
-              <i class="ti ti-send"></i>
-              CONTACT US
+              <i class="ti ti-building"></i>
+              WXM 운영형 문의
             </span>
             <i class="ti ti-chevron-right cs-btn-right"></i>
           </a>
-          <a href="qa.html" class="cs-btn">
+          <a href="coming-soon.html" class="cs-btn">
+            <span class="cs-btn-left">
+              <i class="ti ti-users"></i>
+              파트너 운영형 문의
+            </span>
+            <i class="ti ti-chevron-right cs-btn-right"></i>
+          </a>
+          <a href="coming-soon.html" class="cs-btn">
+            <span class="cs-btn-left">
+              <i class="ti ti-file-description"></i>
+              비즈니스 제안
+            </span>
+            <i class="ti ti-chevron-right cs-btn-right"></i>
+          </a>
+          <a href="qube24-qa.html" class="cs-btn">
             <span class="cs-btn-left">
               <i class="ti ti-help-circle"></i>
               Q&amp;A
-            </span>
-            <i class="ti ti-chevron-right cs-btn-right"></i>
-          </a>
-          <a href="#top" class="cs-btn" id="back-to-top">
-            <span class="cs-btn-left">
-              <i class="ti ti-arrow-up"></i>
-              BACK TO TOP
             </span>
             <i class="ti ti-chevron-right cs-btn-right"></i>
           </a>
@@ -988,22 +929,15 @@
       </div>
       <div class="ft-langs">
         <span class="ft-lang active">KR</span>
-        <span class="ft-lang">EN</span>
-        <span class="ft-lang">JP</span>
-        <span class="ft-lang">CN</span>
+        <a href="coming-soon.html" class="ft-lang">EN</a>
+        <a href="coming-soon.html" class="ft-lang">JP</a>
+        <a href="coming-soon.html" class="ft-lang">CN</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span class="ft-copy">© WXM Inc. All rights reserved.</span>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('back-to-top').addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
 
 </body>
 </html>

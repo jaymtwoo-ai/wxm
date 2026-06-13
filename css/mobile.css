@@ -85,11 +85,13 @@
     border-bottom: 0.5px solid rgba(244, 240, 232, 0.08) !important;
   }
 
-  .footer-top > div,
-  .footer-top > div:first-child,
+  .footer-top > div:first-child {
+    display: block !important;
+  }
+
   .footer-top > div:nth-child(2),
   .footer-top > div:nth-child(3) {
-    display: block !important;
+    display: none !important;
   }
 
   .ft-logo {
@@ -116,37 +118,10 @@
     color: rgba(244, 240, 232, 0.28) !important;
   }
 
-  .ft-company-name {
-    font-size: 8px !important;
-    font-weight: 700 !important;
-    color: rgba(244, 240, 232, 0.75) !important;
-    margin-bottom: 5px !important;
-  }
-
-  .ft-company-info {
-    font-size: 7px !important;
-    line-height: 1.55 !important;
-    color: rgba(244, 240, 232, 0.42) !important;
-    word-break: keep-all !important;
-  }
-
+  .ft-company-name,
+  .ft-company-info,
   .ft-langs {
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-    padding-top: 2px !important;
-  }
-
-  .ft-lang {
-    font-size: 8px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.07em !important;
-    color: rgba(244, 240, 232, 0.35) !important;
-  }
-
-  .ft-lang.active {
-    color: rgba(244, 240, 232, 0.85) !important;
+    display: none !important;
   }
 
   .footer-bottom {

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="../">
+  <title>WXM 와이어프레임 — MOBILE (폰)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--g:#1F4037;--gh:#102A24;--cream:#F4F0E8;--card:#F8F5EE;--gold:#C9A978;--text:#171815;--muted:#5F5A52;--dis:#B4B2A9;--bc:rgba(201,169,120,0.3)}
+    body{font-family:'Figtree',system-ui,sans-serif;background:#c8c4bc;padding:28px 16px 56px}
+    .doc-h{text-align:center;margin-bottom:6px;font-size:20px;font-weight:700;color:var(--gh)}
+    .doc-p{text-align:center;font-size:11px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+    .doc-p b{color:var(--g)}
+    .link-br{text-align:center;margin-bottom:20px;font-size:10px}
+    .link-br a{color:var(--g);font-weight:600}
+    .wrap{max-width:420px;margin:0 auto}
+    .phone{background:#1a1a1a;border-radius:36px;padding:14px 10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+    .screen{background:var(--cream);border-radius:28px;overflow:hidden;max-height:780px;overflow-y:auto}
+    .status{height:22px;background:var(--gh);display:flex;align-items:center;justify-content:center;font-size:7px;color:rgba(244,240,232,.35);letter-spacing:.08em}
+    .tabs{background:var(--gh);display:flex;overflow-x:auto;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{border:0;background:0;color:rgba(244,240,232,.35);font:600 7.5px/1 'Figtree',system-ui;letter-spacing:.04em;padding:9px 8px;cursor:pointer;white-space:nowrap;text-transform:uppercase;border-bottom:1.5px solid transparent}
+    .tab.on{color:#F4F0E8;border-bottom-color:var(--gold)}
+    .pg{display:none}.pg.on{display:block}
+    .bar{background:var(--gh);padding:4px 14px;font-size:6.5px;color:rgba(244,240,232,.38);line-height:1.45}
+    .bar b{color:var(--gold);letter-spacing:.08em}
+
+    /* ── HEADER 48px · 4 nav (CONTACT/LOGIN hidden) ── */
+    .hdr{background:var(--gh);height:48px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;border-bottom:0.5px solid rgba(244,240,232,.08)}
+    .logo{font-size:12px;font-weight:700;letter-spacing:.22em;color:#F4F0E8;white-space:nowrap;flex-shrink:0}
+    .nav{display:flex;gap:14px;align-items:center;flex:1;justify-content:flex-end;min-width:0}
+    .nl{font-size:6px;font-weight:500;letter-spacing:.14em;color:rgba(244,240,232,.55);text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+    .nl.on{color:#F4F0E8}
+    .hide-note{background:rgba(201,169,120,.12);margin:8px 14px 0;padding:6px 10px;border-radius:6px;font-size:6.5px;color:var(--g);line-height:1.5;border:0.5px solid rgba(201,169,120,.35)}
+
+    /* ── HERO · index bg-1 · 좌슬로건 / 아래 골드바+설명 ── */
+    .hero-g{background-color:#102A24;background-image:url('images/bg-1.png');background-position:left top;background-size:cover;background-repeat:no-repeat;padding:34px 22px 36px;position:relative;overflow:hidden;min-height:280px}
+    .hero-g::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,24,19,.08) 0%,transparent 50%);pointer-events:none}
+    .hero-g::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 96% at 50% 50%,transparent 0%,rgba(6,20,16,.04) 100%);pointer-events:none}
+    .hero-g > *{position:relative;z-index:1}
+    .hlbl{font-size:8px;font-weight:800;letter-spacing:.28em;color:#C9A978;text-transform:uppercase;margin-bottom:14px;position:relative}
+    .htitle{font-size:clamp(32px,10vw,44px);font-weight:300;line-height:.95;color:#F4F0E8;letter-spacing:-.055em;position:relative}
+    .htitle span{display:block}
+    .htitle .s1{font-size:.6em;margin-bottom:.1em;font-weight:400}
+    .htitle .x{font-weight:300}
+    .htitle .s3{margin-left:.16em;margin-top:.03em;font-style:italic;font-weight:300;font-size:.92em}
+    .htitle.q{font-size:clamp(36px,11vw,44px);line-height:.98}
+    .hblock{margin-top:22px;padding-left:18px;position:relative}
+    .hblock::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;background:linear-gradient(to bottom,rgba(201,169,120,.95),rgba(201,169,120,.42))}
+    .hbody{font-size:11px;line-height:1.75;color:rgba(244,240,232,.78);position:relative}
+    .hbody .em{font-weight:600;color:#F4F0E8}
+    .hk{font-size:7px;font-weight:700;letter-spacing:.16em;color:#C9A978;text-transform:uppercase;margin-bottom:8px}
+
+    /* ── ROADMAP vertical timeline ── */
+    .sec{padding:0 20px 38px;background:var(--cream)}
+    .lbl{font-size:8px;font-weight:700;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;padding-top:32px}
+    .rm-v{display:flex;flex-direction:column}
+    .rm{position:relative;padding:20px 12px 20px 96px;border-top:1px solid rgba(31,64,55,.1)}
+    .rm:first-child{border-top:0}
+    .rm::before{content:'';position:absolute;left:48px;top:28px;width:1px;height:calc(100% - 18px);background:rgba(31,64,55,.15)}
+    .rm:last-child::before{display:none}
+    .rm::after{content:'';position:absolute;left:44px;top:24px;width:8px;height:8px;border-radius:50%;background:rgba(31,64,55,.18)}
+    .rm-n{position:absolute;left:0;top:14px;width:64px;font-size:26px;font-weight:400;line-height:.92;color:rgba(201,169,120,.78)}
+    .rm-t{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+    .rm-d{font-size:10px;line-height:1.65;color:var(--muted);margin-bottom:8px}
+    .rm-tag{font-size:9px;font-weight:700;letter-spacing:.13em;color:rgba(23,24,21,.56)}
+    .rm-tag::after{content:' →';font-size:14px;font-weight:300;margin-left:10px;color:rgba(23,24,21,.62)}
+    .rm.off .rm-n{color:rgba(201,169,120,.78)}
+    .rm.off .rm-t,.rm.off .rm-d{color:rgba(95,90,82,.62)}
+    .rm.off .rm-tag{color:rgba(23,24,21,.56)}
+    .rm.act::after{background:var(--g);box-shadow:0 0 0 5px rgba(31,64,55,.08)}
+    .rm.act .rm-n{color:var(--g)}
+    .rm.act .rm-t{color:var(--g)}
+    .rm.act .rm-d{color:rgba(31,64,55,.82)}
+    .rm.act .rm-tag{color:var(--g)}
+
+    /* ── qube24 B2B mobile stacked ── */
+    .b2b-note{font-size:6.5px;color:var(--muted);font-style:italic;margin:-8px 0 12px;line-height:1.5}
+    .b2b-v{display:flex;flex-direction:column;gap:0}
+    .b2b{border-top:1px solid rgba(201,169,120,.22);padding:18px 0 20px;background:transparent}
+    .b2b:first-child{border-top:0;padding-top:0}
+    .b2b-n{font-size:8px;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:6px}
+    .b2b-t{font-size:13px;font-weight:700;color:var(--g);margin-bottom:6px}
+    .b2b-d{font-size:10px;line-height:1.65;color:var(--muted)}
+
+    /* ── CONTACT BAND — bg-2 · 좌 제안문구 / 아래 pill 100% ── */
+    .band{background:var(--cream);padding:24px 24px 28px;display:flex;flex-direction:column;gap:18px;border-top:0.5px solid rgba(31,64,55,.08)}
+    .band.bg2{background-color:var(--cream);background-image:url('images/bg-2.png');background-position:left center;background-size:cover;background-repeat:no-repeat}
+    .blbl{font-size:7px;font-weight:700;letter-spacing:.28em;color:var(--gold);margin-bottom:7px;text-transform:uppercase}
+    .btitle{font-size:24px;font-weight:400;line-height:1.2;color:var(--g);letter-spacing:-.055em}
+    .pills{display:flex;flex-direction:column;gap:10px;width:100%}
+    .pbtn{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;border:1px solid rgba(201,169,120,.68);border-radius:999px;background:rgba(244,240,232,.18);padding:14px 18px;font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase}
+    .pl{display:flex;align-items:center;gap:10px}
+    .pl i{font-size:14px}
+    .parr{font-size:14px;color:var(--g);opacity:.85}
+
+    /* ── PAGE HEADER dark (contact/qa/login/qube24-qa) ── */
+    .ph{background:var(--gh);padding:32px 24px 28px;border-bottom:0.5px solid rgba(244,240,232,.08)}
+    .ph-lbl{font-size:7px;font-weight:700;letter-spacing:.24em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;opacity:.85}
+    .ph-t{font-size:28px;font-weight:300;line-height:1.18;color:var(--cream);letter-spacing:-.025em}
+    .ph-s{font-size:11px;color:rgba(244,240,232,.5);margin-top:8px;line-height:1.6}
+
+    /* ── hub-item pill capsules · no green active fill ── */
+    .hub{padding:32px 24px 40px;background:var(--cream)}
+    .hub-lbl{font-size:7px;font-weight:700;letter-spacing:.2em;color:var(--gold);margin-bottom:20px;text-transform:uppercase}
+    .hub-i{display:flex;align-items:center;justify-content:space-between;border:0.5px solid rgba(31,64,55,.18);border-radius:30px;padding:16px 20px;background:transparent;margin-bottom:8px;color:var(--text)}
+    .hub-i.on{border-color:var(--gold);background:rgba(201,169,120,.06)}
+    .hub-i.off{opacity:.45}
+    .hub-l{display:flex;align-items:center;gap:10px}
+    .hub-l i{font-size:16px;color:var(--g);opacity:.7}
+    .hub-i.off .hub-l i{color:var(--dis);opacity:1}
+    .hub-nm{font-size:13px;font-weight:600;color:var(--text)}
+    .hub-i.off .hub-nm{color:var(--dis)}
+    .hub-arr i{font-size:14px;color:var(--muted)}
+
+    /* ── Q&A accordion ── */
+    .qa{padding:32px 24px 0;background:var(--cream)}
+    .qai{border:0.5px solid var(--bc);border-radius:8px;padding:12px 16px;background:var(--card);display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+    .qq{font-size:11px;font-weight:600;color:var(--text)}
+
+    /* ── qube24-qa dark CTA band ── */
+    .cta-band{background:var(--g);padding:28px 24px 32px;border-top:0.5px solid rgba(201,169,120,.15)}
+    .cta-band .blbl{color:rgba(201,169,120,.8)}
+    .cta-band .btitle{color:var(--cream);font-weight:700;font-size:22px}
+    .cpbtn{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;border:0.5px solid rgba(244,240,232,.2);border-radius:30px;background:transparent;padding:14px 18px;font-size:9px;font-weight:600;letter-spacing:.1em;color:var(--cream);text-transform:uppercase}
+    .cpbtn i{font-size:14px;color:rgba(163,210,185,.8)}
+    .cpbtn .parr{color:rgba(244,240,232,.35)}
+
+    /* ── LOGIN ── */
+    .login{padding:32px 24px 40px;background:var(--cream)}
+    .lcard{border:0.5px solid var(--bc);border-radius:16px;padding:28px 24px;background:var(--card)}
+    .fld{margin-bottom:14px}
+    .fld-l{font-size:8.5px;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:6px;text-transform:uppercase}
+    .fld-b{height:42px;border:0.5px solid rgba(31,64,55,.22);border-radius:12px;background:rgba(255,255,255,.5)}
+    .lsub{height:44px;border-radius:40px;background:var(--g);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.12em;margin-top:6px;text-transform:uppercase}
+
+    /* ── SEMINAR cards ── */
+    .sem-v{display:flex;flex-direction:column;gap:10px}
+    .sem{border:0.5px solid var(--bc);border-radius:10px;padding:18px;background:var(--card)}
+    .sem-n{font-size:8px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:.1em;text-transform:uppercase}
+    .sem-t{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--text)}
+    .sem-b{font-size:11px;line-height:1.7;color:var(--muted);margin-bottom:10px}
+    .sem-btn{display:inline-flex;align-items:center;gap:5px;border:0.5px solid var(--bc);border-radius:30px;padding:6px 14px;font-size:9px;color:var(--text)}
+
+    /* ── HERO 랜딩형 (qube24·seminar) — gradient, bg-1 없음 ── */
+    .hero-land{background:linear-gradient(115deg,rgba(16,42,36,.99) 0%,rgba(31,64,55,.92) 100%);padding:56px 24px 46px;position:relative;overflow:hidden}
+    .hero-land .hlbl{font-size:7px;letter-spacing:.28em;margin-bottom:12px}
+    .hero-land .htitle{font-size:44px;line-height:.98;letter-spacing:-.06em;margin-bottom:34px}
+    .hero-land .htitle .s1{font-size:.58em;margin-bottom:.1em}
+    .hero-land .htitle .s3{margin-left:.16em;margin-top:.03em;font-style:italic;font-size:.92em}
+
+    /* ── [C] 한 화면 — login / coming-soon ── */
+    .pg-c{display:flex;flex-direction:column;min-height:520px;max-height:680px;overflow:hidden}
+    .cs-wrap{background:var(--gh);flex:1;display:flex;flex-direction:column;min-height:0}
+    .cs-hero{flex:1;padding:40px 24px 28px;display:flex;align-items:center;background:linear-gradient(115deg,rgba(16,42,36,.99) 0%,rgba(31,64,55,.92) 100%)}
+    .cs-stack{width:100%}
+    .cs-lbl{font-size:6px;font-weight:700;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+    .cs-t{font-size:44px;font-weight:300;line-height:.98;color:var(--cream);letter-spacing:-.06em;margin-bottom:32px}
+    .cs-t span{display:block}
+    .cs-t .sub{color:rgba(244,240,232,.78)}
+    .cs-block{padding-left:14px;position:relative}
+    .cs-block::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;background:linear-gradient(to bottom,rgba(201,169,120,.95),rgba(201,169,120,.42))}
+    .cs-b{font-size:11px;color:rgba(244,240,232,.76);line-height:1.75;margin-bottom:16px}
+    .cs-btn{display:inline-flex;align-items:center;gap:6px;border:0.5px solid rgba(244,240,232,.3);border-radius:30px;padding:8px 18px;font-size:9px;color:var(--cream);letter-spacing:.08em;text-transform:uppercase}
+
+    /* ── FOOTER compact mobile ── */
+    .ftr{background:var(--gh);border-top:0.5px solid rgba(244,240,232,.08)}
+    .ftr-t{padding:10px 24px 8px}
+    .fl{font-size:8px;font-weight:700;letter-spacing:.2em;color:#F4F0E8;margin-bottom:5px}
+    .fs{font-size:6px;font-weight:700;letter-spacing:.1em;color:rgba(244,240,232,.35);margin-bottom:3px;text-transform:uppercase}
+    .ftg{font-size:7px;color:rgba(244,240,232,.28);line-height:1.35}
+    .ftr-b{padding:7px 24px 9px;font-size:7px;color:rgba(244,240,232,.28)}
+    .ftr-hide{font-size:6.5px;color:rgba(244,240,232,.2);padding:0 24px 6px;font-style:italic}
+  </style>
+</head>
+<body>
+  <div class="doc-h">WXM 와이어프레임 — MOBILE</div>
+  <div class="doc-p">확정 스펙 v5 · <b>INDEX</b>: HERO bg-1 / CONTACT bg-2 / 위문구·아래pill 100%<br>
+  <b>랜딩</b>: qube24·seminar dark gradient HERO · seminar 슬로건=index<br>
+  <b>[C]</b>: login·soon HEADER+본문+FOOTER 한 화면 · 2025-06-11</div>
+  <div class="link-br">브라우저 버전 → <a href="WXM-WIREFRAME-BROWSER.html">WXM-WIREFRAME-BROWSER.html</a></div>
+
+  <div class="wrap">
+    <div class="phone">
+      <div class="screen">
+        <div class="status">390 × 844 · iPhone 기준</div>
+        <div class="tabs">
+          <button class="tab on" onclick="go(0)">INDEX</button>
+          <button class="tab" onclick="go(1)">QUBE24</button>
+          <button class="tab" onclick="go(2)">SEMINAR</button>
+          <button class="tab" onclick="go(3)">CONTACT</button>
+          <button class="tab" onclick="go(4)">Q&amp;A</button>
+          <button class="tab" onclick="go(5)">Q24 QA</button>
+          <button class="tab" onclick="go(6)">LOGIN</button>
+          <button class="tab" onclick="go(7)">SOON</button>
+        </div>
+
+        <!-- INDEX -->
+        <div class="pg on">
+          <div class="bar"><b>INDEX</b> · HERO bg-1 · roadmap 세로타임라인 · CONTACT bg-2 · 위문구/아래pill</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav">
+              <span class="nl on">ABOUT</span>
+              <span class="nl">BRANDS</span>
+              <span class="nl">SEMINAR &amp; EVENT</span>
+            </div>
+          </div>
+          <div class="hide-note">CONTACT US · LOGIN pill 숨김 · ≤380px: nav 5.6px · SEMINAR &amp; EVENT 줄바꿈/축약 가능</div>
+          <div class="hero-g">
+            <div class="hlbl">ABOUT WXM</div>
+            <div class="htitle">
+              <span class="s1">We Design</span>
+              <span>Wellness <span class="x">x</span></span>
+              <span class="s3">Mechanism</span>
+            </div>
+            <div class="hblock"><div class="hbody">WXM은 무인 큐브 운영 시스템을…<br><br>관찰하고, 검증하고…<br><br><span class="em">We Design Wellness x Mechanism.</span></div></div>
+          </div>
+          <div class="sec">
+            <div class="lbl">SERVICE ROADMAP</div>
+            <div class="rm-v">
+              <div class="rm act"><div class="rm-n">01</div><div class="rm-t">QUBE24</div><div class="rm-d">공간별 이용자 취향에 맞춰<br>상품 구성을 커스텀하는<br>무인 큐브 운영 서비스</div><div class="rm-tag">FIRST STEP</div></div>
+              <div class="rm off"><div class="rm-n">02</div><div class="rm-t">RECOVERY MODE</div><div class="rm-d">회복 중심 서비스</div><div class="rm-tag">NEXT STEP</div></div>
+              <div class="rm off"><div class="rm-n">03</div><div class="rm-t">BODY CHECK</div><div class="rm-d">바디 밸런스 서비스</div><div class="rm-tag">NEXT STEP</div></div>
+              <div class="rm off"><div class="rm-n">04</div><div class="rm-t">INNER FLOW</div><div class="rm-d">이너 밸런스 서비스</div><div class="rm-tag">NEXT STEP</div></div>
+              <div class="rm off"><div class="rm-n">05</div><div class="rm-t">CONNECTED WELLNESS</div><div class="rm-d">연결형 웰니스 서비스</div><div class="rm-tag">NEXT STEP</div></div>
+            </div>
+          </div>
+          <div class="band bg2">
+            <div><div class="blbl">CONTACT</div><div class="btitle">WXM과 함께<br>새로운 가능성을<br>시작하세요.</div></div>
+            <div class="pills">
+              <div class="pbtn"><span class="pl"><i class="ti ti-send"></i> CONTACT US</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-help-circle"></i> Q&amp;A</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-arrow-up"></i> BACK TO TOP</span><i class="ti ti-chevron-right parr"></i></div>
+            </div>
+          </div>
+          <div class="ftr">
+            <div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div>
+            <div class="ftr-hide">회사정보 · EN JP CN 숨김</div>
+            <div class="ftr-b">© WXM Inc. All rights reserved.</div>
+          </div>
+        </div>
+
+        <!-- QUBE24 -->
+        <div class="pg">
+          <div class="bar"><b>QUBE24</b> · 랜딩 gradient HERO · B2B 세로 · CONTACT bg-2 pill×4</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl on">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="hero-land">
+            <div class="hlbl">QUBE24</div>
+            <div class="htitle q"><span>Better</span><span>Moment</span><span class="s3">Better You</span></div>
+            <div class="hblock">
+              <div class="hbody">
+                <div class="hk">QUBE24 B2B SYSTEM</div>
+                <span class="em">머무는 공간에 취향의 감각을 채우다.</span><br>프리미엄 디자인…
+              </div>
+            </div>
+          </div>
+          <div class="sec" style="padding-bottom:20px">
+            <div class="lbl">QUBE24 B2B SYSTEM</div>
+            <div class="b2b-note">데스크톱: 4열 divider(세로 구분선) · 모바일: 세로 스택</div>
+            <div class="b2b-v">
+              <div class="b2b"><div class="b2b-n">01</div><div class="b2b-t">맞춤 기준</div><div class="b2b-d">공간별 이용자 취향…</div></div>
+              <div class="b2b"><div class="b2b-n">02</div><div class="b2b-t">구성 방식</div><div class="b2b-d">큐브 구성·상품 라인…</div></div>
+              <div class="b2b"><div class="b2b-n">03</div><div class="b2b-t">적용 장소</div><div class="b2b-d">호텔·리조트·오피스…</div></div>
+              <div class="b2b"><div class="b2b-n">04</div><div class="b2b-t">운영 방식</div><div class="b2b-d">WXM 운영형 / 파트너 관리형</div></div>
+            </div>
+          </div>
+          <div class="band bg2">
+            <div><div class="blbl">QUBE24 CONTACT</div><div class="btitle">문의 유형을<br>선택해 주세요.</div></div>
+            <div class="pills">
+              <div class="pbtn"><span class="pl"><i class="ti ti-building"></i> WXM 운영형 문의</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-users"></i> 파트너 운영형 문의</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-file-description"></i> 비즈니스 제안</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-help-circle"></i> Q&amp;A</span><i class="ti ti-chevron-right parr"></i></div>
+            </div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- SEMINAR -->
+        <div class="pg">
+          <div class="bar"><b>SEMINAR</b> · 랜딩 gradient · index 슬로건 · INQUIRY bg-2 pill×3</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl on">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="hero-land">
+            <div class="hlbl">SEMINAR &amp; EVENT</div>
+            <div class="htitle">
+              <span class="s1">We Design</span>
+              <span>Wellness <span class="x">x</span></span>
+              <span class="s3">Mechanism</span>
+            </div>
+            <div class="hblock" style="margin-top:0;padding-left:14px"><div class="hbody">세미나와 문화적 경험으로…</div></div>
+          </div>
+          <div class="sec">
+            <div class="lbl">SEMINAR &amp; EVENT</div>
+            <div class="sem-v">
+              <div class="sem"><div class="sem-n">01 / SEMINAR</div><div class="sem-t">Seminar</div><div class="sem-b">인사이트를 나누는 자리…</div><div class="sem-btn"><i class="ti ti-calendar"></i> 세미나 캘린더</div></div>
+              <div class="sem"><div class="sem-n">02 / EVENT</div><div class="sem-t">Event</div><div class="sem-b">감각과 문화…</div><div class="sem-btn"><i class="ti ti-calendar"></i> 이벤트 캘린더</div></div>
+            </div>
+          </div>
+          <div class="band bg2">
+            <div><div class="blbl">INQUIRY</div><div class="btitle">참석, 참여,<br>그리고 제안</div></div>
+            <div class="pills">
+              <div class="pbtn"><span class="pl"><i class="ti ti-armchair"></i> 세미나 참석 문의</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-ticket"></i> 이벤트 참여 문의</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="pbtn"><span class="pl"><i class="ti ti-bulb"></i> 함께 제안하기</span><i class="ti ti-chevron-right parr"></i></div>
+            </div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="pg">
+          <div class="bar"><b>CONTACT</b> · dark page-header · hub pill 30px · no green fill</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="ph"><div class="ph-lbl">CONTACT</div><div class="ph-t">문의하실 브랜드 또는<br>서비스를 선택해 주세요.</div></div>
+          <div class="hub">
+            <div class="hub-lbl">CONTACT</div>
+            <div class="hub-i on"><div class="hub-l"><i class="ti ti-building"></i><span class="hub-nm">QUBE24</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-refresh"></i><span class="hub-nm">RECOVERY MODE</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-activity"></i><span class="hub-nm">BODY CHECK</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-ripple"></i><span class="hub-nm">INNER FLOW</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-heartbeat"></i><span class="hub-nm">CONNECTED WELLNESS</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- Q&A -->
+        <div class="pg">
+          <div class="bar"><b>Q&amp;A</b> · dark page-header · QUBE24 → qube24-qa.html</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="ph"><div class="ph-lbl">Q&amp;A</div><div class="ph-t">확인하실 브랜드 또는<br>서비스를 선택해 주세요.</div></div>
+          <div class="hub">
+            <div class="hub-lbl">Q&amp;A</div>
+            <div class="hub-i on"><div class="hub-l"><i class="ti ti-building"></i><span class="hub-nm">QUBE24</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-refresh"></i><span class="hub-nm">RECOVERY MODE</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-activity"></i><span class="hub-nm">BODY CHECK</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-ripple"></i><span class="hub-nm">INNER FLOW</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+            <div class="hub-i off"><div class="hub-l"><i class="ti ti-heartbeat"></i><span class="hub-nm">CONNECTED WELLNESS</span></div><span class="hub-arr"><i class="ti ti-chevron-right"></i></span></div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- QUBE24 Q&A -->
+        <div class="pg">
+          <div class="bar"><b>QUBE24 Q&amp;A</b> · 7 accordion · dark CTA 2 pill</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="ph">
+            <div class="ph-lbl">QUBE24 Q&amp;A</div>
+            <div class="ph-t">QUBE24 운영 방식이<br>궁금하신가요?</div>
+            <div class="ph-s">도입 방식에 따라 관리 주체와 판매 매출 구조가 달라집니다.</div>
+          </div>
+          <div class="qa">
+            <div class="hub-lbl" style="padding:0 0 16px">QUBE24 Q&amp;A</div>
+            <div class="qai"><span class="qq">1. QUBE24는 누가 관리하나요?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">2. 상품은 누가 선정하나요?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">3. 상품 보충은 누가 하나요?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">4. 판매 매출은 누구에게 발생하나요?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">5. 파트너가 부담하는 비용은?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">6. WXM 운영형은 어떤 곳에 적합한가요?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+            <div class="qai"><span class="qq">7. 파트너 관리형은 어떤 경우에?</span><i class="ti ti-chevron-down" style="color:var(--dis);font-size:12px"></i></div>
+          </div>
+          <div class="cta-band">
+            <div><div class="blbl">CONTACT</div><div class="btitle">더 궁금한 점이<br>있으신가요?</div></div>
+            <div class="pills">
+              <div class="cpbtn"><span class="pl"><i class="ti ti-send"></i> QUBE24 문의하기</span><i class="ti ti-chevron-right parr"></i></div>
+              <div class="cpbtn"><span class="pl"><i class="ti ti-arrow-left"></i> Q&amp;A 목록으로</span><i class="ti ti-chevron-right parr"></i></div>
+            </div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="pg">
+          <div class="bar"><b>LOGIN</b> · [C] HEADER+PH+폼+FOOTER 한 화면 · 스크롤 없음</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="ph"><div class="ph-lbl">LOGIN</div><div class="ph-t">WXM 파트너 로그인</div></div>
+          <div class="login">
+            <div class="lcard">
+              <div class="fld"><div class="fld-l">이메일</div><div class="fld-b"></div></div>
+              <div class="fld"><div class="fld-l">비밀번호</div><div class="fld-b"></div></div>
+              <div class="lsub"><i class="ti ti-login"></i> LOGIN</div>
+            </div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+        <!-- COMING SOON -->
+        <div class="pg">
+          <div class="bar"><b>COMING SOON</b> · [C] 한 화면 · title+copy+BACK TO MAIN</div>
+          <div class="hdr">
+            <span class="logo">W X M</span>
+            <div class="nav"><span class="nl">ABOUT</span><span class="nl">BRANDS</span><span class="nl">SEMINAR &amp; EVENT</span></div>
+          </div>
+          <div class="cs-wrap">
+            <div class="cs-hero">
+              <div class="cs-stack">
+                <div class="cs-lbl">NEXT WELLNESS SYSTEM</div>
+                <div class="cs-t"><span>Coming</span><span class="sub">Soon</span></div>
+                <div class="cs-block">
+                  <div class="cs-b"><strong style="color:var(--cream);font-weight:600">WXM은 지금 다음 서비스를 설계하고 있습니다.</strong><br><br>공간과 이용자의 리듬을 연결하는<br>새로운 웰니스 경험을 준비하고 있습니다.<br><br>곧 더 정밀하고 자연스러운 방식으로 찾아뵙겠습니다.</div>
+                  <div class="cs-btn"><i class="ti ti-arrow-left"></i> BACK TO MAIN</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ftr"><div class="ftr-t"><div class="fl">W X M</div><div class="fs">WELLNESS × MECHANISM</div><div class="ftg">We Design Wellness x Mechanism</div></div><div class="ftr-b">© WXM Inc.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function go(n){document.querySelectorAll('.pg').forEach((p,i)=>p.classList.toggle('on',i===n));document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===n))}
+  </script>
+</body>
+</html>
