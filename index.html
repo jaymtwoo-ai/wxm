@@ -1085,23 +1085,6 @@ html,body{overflow-x:hidden!important}.site-header,.header{height:56px!important
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // Mobile touch: roadmap / contact links (pseudo-elements block taps on iOS)
-    (function () {
-      if (!('ontouchstart' in window)) return;
-
-      document.querySelectorAll('a.rm-card[href], a.cb-btn[href], a.nav-link[href$=".html"], a.nav-pill[href]').forEach(function (link) {
-        var href = link.getAttribute('href');
-        if (!href || href === '#' || href.indexOf('#') === 0) return;
-
-        link.addEventListener('touchend', function (e) {
-          if (link.dataset.navigated) return;
-          link.dataset.navigated = '1';
-          if (e.cancelable) e.preventDefault();
-          window.location.href = href;
-        }, { passive: false });
-      });
-    })();
   </script>
 
 </body>
